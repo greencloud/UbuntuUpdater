@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # CHANGE THIS TO YOUR OWN USERNAME (/home/username)
+# But if you're gonna be using this updater through the setup.sh script
+# then you can leave this line alone
 USR=username
 
 clear
