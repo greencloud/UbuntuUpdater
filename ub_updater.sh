@@ -43,7 +43,10 @@ SEDIR=/etc/selinux
 SEENF=/usr/sbin/getenforce
 # Make sure system is not locked
 if [ -f $LOCK ]; then
-	rm -f $LOCK
+	rm -f $LOCK &>/dev/null
+fi
+if [ -f $TEMP ]; then
+	rm -f $TEMP &>/dev/null
 fi
 if [[ -d $SEDIR && -f $SEENF ]]; then
 	# If there SELinux and enforcing is 1, set it to 0 temporarily
@@ -112,7 +115,7 @@ sleep 2
 clear
 
 # Set SELinux back into enforced mode if needed
-if [ -d $SEDIR && -f $SEENF && -f $TEMP ]; then
+if [[ -d $SEDIR && -f $SEENF && -f $TEMP ]]; then
 	rm -f $TEMP &>/dev/null
 	setenforce 1 &>/dev/null
 fi
