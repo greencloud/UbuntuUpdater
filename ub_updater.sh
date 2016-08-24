@@ -48,8 +48,8 @@ fi
 if [[ -d $SEDIR && -f $SEENF ]]; then
 	# If there SELinux and enforcing is 1, set it to 0 temporarily
 	if [ $(getenforce) == 'Enforcing' ]; then
-		touch $TEMP
-		setenforce 0
+		touch $TEMP &>/dev/null
+		setenforce 0 &>/dev/null
 	fi
 fi
 apt-get update --fix-missing
@@ -74,12 +74,11 @@ if [ ! -f $CLAMFILE ]; then
 	apt-get install -y clamav clamav-daemon
 fi
 if [[ -f $CLAMFILE && -f $CLAMAVLOG ]]; then
-	sleep 1
+	sleep 2
 	freshclam
 	tail -10 $CLAMAVLOG
 fi
-echo $GREEN""
-echo "DONE!"
+echo $GREEN"DONE!"
 echo ""
 sleep 5
 clear
@@ -114,14 +113,14 @@ clear
 
 # Set SELinux back into enforced mode if needed
 if [ -d $SEDIR && -f $SEENF && -f $TEMP ]; then
-	rm -f $TEMP
-	setenforce 1
+	rm -f $TEMP &>/dev/null
+	setenforce 1 &>/dev/null
 fi
 
 echo $GREEN"    >>>>> SUCCESS: System is now clean and up-to-date <<<<<"
 echo ""
 echo $NORM""
-pause(){
+pause() {
 	read -n1 -rsp $"Press any key to continue or Ctrl+C to exit..."
 }
 pause
