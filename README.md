@@ -1,4 +1,4 @@
-# UbuntuUpdater
+# How To Use UbuntuUpdater
 This simple bash script is intended to automate system update, virus scan, and cleanup utility for Ubuntu 14+ Distro.
 
 This script basically run apt-get update, upgrade and dist-upgrade automatically.
@@ -6,7 +6,7 @@ This script also run a virus scan using ClamAV. If ClamAV is not installed, it w
 This script also runs apt-get autoclean and autoremove.<br />
 
 
-HOW TO SETUP AND USE THIS SCRIPT:
+SETUP GUIDE:
 
   1. Download UbuntuUpdater to your home directory<br />
       $ git clone https://github.com/greencloud/UbuntuUpdater.git
