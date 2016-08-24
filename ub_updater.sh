@@ -14,7 +14,6 @@ NORM=$(tput sgr0)
 
 echo ""
 echo ""
-echo ""
 echo $RED"          +###################################################+"
 echo $RED"          +                                                   +"
 echo $RED"          +     Ubuntu Linux System Updater Script v.0.1      +"
@@ -28,7 +27,6 @@ echo $BLUE"    This script is intended to automate system update and at the same
 echo $BLUE"    time run a cleanup and virus quick-scan utility. Enjoy! :)"
 echo ""
 echo $RED"     NOTICE: This script will always run with root priviledges..."
-echo ""
 echo ""
 echo ""
 sleep 5
@@ -90,7 +88,7 @@ echo $RED"    >>>>> RUNNING VIRUS QUICK SCAN <<<<<"
 echo $RED" ----- This might take a few minutes -----"
 # Virus quick scan
 echo $GREEN""
-VIRUSBIN=/home/$USR/Virus-bin-$RANDOM
+VIRUSBIN=/home/$USR/Quarantine-$RANDOM
 if [ -d $VIRUSBIN ]; then
 	rm -fR $VIRUSBIN &>/dev/null
 	mkdir $VIRUSBIN &>/dev/null
