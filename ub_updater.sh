@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CHANGE THIS TO YOUR OWN USERNAME (/home/username)
-USR=greencloud
+USR=username
 
 clear
 # Defined color settings
@@ -32,7 +32,7 @@ echo ""
 sleep 5
 clear
 
-echo $RED"    >>>>> UPDATING SYSTEM FROM STANDARD REPO <<<<<"
+echo $RED"    >>>>> UPDATE PACKAGES FROM STANDARD REPO <<<<<"
 # Update system
 echo $GREEN""
 apt-get update -f
@@ -43,8 +43,8 @@ echo ""
 sleep 2
 clear
 
-echo $RED"    >>>>> Updating ClamScan Anti-virus program <<<<<"
-echo $RED"            --- THIS MIGHT TAKE A WHILE ----"
+echo $RED"    >>>>> Update ClamAV Anti-virus program <<<<<"
+echo $RED"          --- THIS MIGHT TAKE A WHILE ----"
 # Update Anti-virus
 # If there's no anti-virus found, install ClamAV
 echo $GREEN""
@@ -53,6 +53,7 @@ CLAMAVLOG=/var/log/clamav/freshclam.log
 if [ ! -f $CLAMFILE ]; then
 	echo $RED"    !!!! NO ANTI-VIRUS INSTALLED - INSTALLING CLAMAV !!!!"
 	echo $STAND""
+	sleep 2
 	apt-get install -y clamscan clamav-daemon
 fi
 if [ -f $CLAMAVLOG ]; then
@@ -62,17 +63,6 @@ fi
 echo "DONE!"
 echo ""
 sleep 5
-clear
-
-echo $NORM"    >>>>> RUNNING THE CLEAN UP PROCESS <<<<<"
-# Clean system
-echo $GREEN""
-apt-get clean
-apt-get -y autoclean
-apt-get -y autoremove
-echo "DONE!"
-echo ""
-sleep 2
 clear
 
 echo $RED"    >>>>> RUNNING VIRUS QUICK SCAN <<<<<"
@@ -87,6 +77,17 @@ else
 	mkdir $VIRUSBIN &>/dev/null
 fi
 clamscan -voi --move=$VIRUSBIN /home/$USR/*
+echo "DONE!"
+echo ""
+sleep 2
+clear
+
+echo $NORM"    >>>>> RUNNING THE CLEAN UP PROCESS <<<<<"
+# Clean system
+echo $GREEN""
+apt-get clean
+apt-get -y autoclean
+apt-get -y autoremove
 echo "DONE!"
 echo ""
 sleep 2
