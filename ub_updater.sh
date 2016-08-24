@@ -27,7 +27,7 @@ echo ""
 echo $BLUE"    This script is intended to automate system update and at the same"
 echo $BLUE"    time run a cleanup and virus quick-scan utility. Enjoy! :)"
 echo ""
-echo $RED"     NOTICE: This script will always run with root priviledge..."
+echo $RED"     NOTICE: This script will always run with root priviledges..."
 echo ""
 echo ""
 echo ""
@@ -37,10 +37,20 @@ clear
 echo $RED"    >>>>> UPDATE PACKAGES FROM STANDARD REPO <<<<<"
 # Update system
 echo $GREEN""
-# Make sure system is not locked
+TEMP=/home/$USR/.uutf
 LOCK=/var/lib/apt/lists/lock
+SEDIR=/etc/selinux
+SEENF=/usr/sbin/getenforce
+# Make sure system is not locked
 if [ -f $LOCK ]; then
 	rm -f $LOCK
+fi
+if [[ -d $SEDIR && -f $SEENF ]]; then
+	# If there SELinux and enforcing is 1, set it to 0 temporarily
+	if [ $(getenforce) == 'Enforcing' ]; then
+		touch $TEMP
+		setenforce 0
+	fi
 fi
 apt-get update --fix-missing
 apt-get -y upgrade
@@ -101,6 +111,12 @@ echo "DONE!"
 echo ""
 sleep 2
 clear
+
+# Set SELinux back into enforced mode if needed
+if [ -d $SEDIR && -f $SEENF && -f $TEMP ]; then
+	rm -f $TEMP
+	setenforce 1
+fi
 
 echo $GREEN"    >>>>> SUCCESS: System is now clean and up-to-date <<<<<"
 echo ""
