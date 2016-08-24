@@ -7,8 +7,8 @@ clear
 # Defined color settings
 RED=$(tput setaf 1 && tput bold)
 GREEN=$(tput setaf 2 && tput bold)
-STAND=$(tput sgr0)
 BLUE=$(tput setaf 6 && tput bold)
+NORM=$(tput sgr0)
 
 echo ""
 echo ""
@@ -64,7 +64,7 @@ echo ""
 sleep 5
 clear
 
-echo $STAND"    >>>>> RUNNING THE CLEAN UP PROCESS <<<<<"
+echo $NORM"    >>>>> RUNNING THE CLEAN UP PROCESS <<<<<"
 # Clean system
 echo $GREEN""
 apt-get clean
@@ -94,7 +94,7 @@ clear
 
 echo $GREEN"    >>>>> SUCCESS: System is now clean and up-to-date <<<<<"
 echo ""
-echo $STAND""
+echo $NORM""
 pause(){
 	read -n1 -rsp $"Press any key to continue or Ctrl+C to exit..."
 }
