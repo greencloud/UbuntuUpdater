@@ -51,9 +51,9 @@ fi
 
 if fgrep -cq "$TRIGGER" $BASHRC; then
 	echo ""
-	echo $GREEN"    --- YOUR UPDATER IS NOW READY TO USE ---"
+	echo $GREEN"  --- YOUR UPDATER IS NOW READY TO USE ---"
 	echo ""
-	echo $NORM"Close this Terminal then open up a new Terminal to run the command"
+	echo $NORM"Open up a new Terminal and then run: $ systemupdate"
 	pause
 	clear
 else
@@ -65,9 +65,9 @@ else
 		echo "alias $TRIGGER='sudo ./.ub_updater.sh'" >> $BASHRC
 	fi
 	echo ""
-	echo $GREEN"    --- YOUR UPDATER IS NOW READY TO USE ---"
+	echo $GREEN"  --- YOUR UPDATER IS NOW READY TO USE ---"
 	echo ""
-	echo $NORM"Close this Terminal then open up a new Terminal to run the command"
+	echo $NORM"Open up a new Terminal and then run: $ systemupdate"
 	pause
 	clear
 fi
