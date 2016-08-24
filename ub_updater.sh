@@ -37,7 +37,7 @@ clear
 echo $RED"    >>>>> UPDATE PACKAGES FROM STANDARD REPO <<<<<"
 # Update system
 echo $GREEN""
-TEMP=/home/$USR/.uutf
+TEMP=/home/$USR/.uutf0
 LOCK=/var/lib/apt/lists/lock
 SEDIR=/etc/selinux
 SEENF=/usr/sbin/getenforce
@@ -45,10 +45,10 @@ SEENF=/usr/sbin/getenforce
 if [ -f $LOCK ]; then
 	rm -f $LOCK &>/dev/null
 fi
-if [ -f $TEMP ]; then
-	rm -f $TEMP &>/dev/null
-fi
 if [[ -d $SEDIR && -f $SEENF ]]; then
+	if [ -f $TEMP ]; then
+		rm -f $TEMP &>/dev/null
+	fi
 	# If there SELinux and enforcing is 1, set it to 0 temporarily
 	if [ $(getenforce) == 'Enforcing' ]; then
 		touch $TEMP &>/dev/null
