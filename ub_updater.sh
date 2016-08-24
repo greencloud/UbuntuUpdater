@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# CHANGE THIS TO YOUR USERNAME
+USR=greencloud
+
 clear
 # Defined color settings
 RED=$(tput setaf 1 && tput bold)
@@ -32,7 +35,7 @@ clear
 echo $RED"    >>>>> UPDATING SYSTEM FROM STANDARD REPO <<<<<"
 # Update system
 echo $GREEN""
-apt-get update
+apt-get -f update
 apt-get -y upgrade
 apt-get -y dist-upgrade
 echo "DONE!"
@@ -76,14 +79,14 @@ echo $RED"    >>>>> RUNNING VIRUS QUICK SCAN <<<<<"
 echo $RED" ----- This might take a few minutes -----"
 # Virus quick scan
 echo $GREEN""
-VIRUSBIN=/home/rasmus/Virus-bin
+VIRUSBIN=/home/$USR/Virus-bin
 if [ -d $VIRUSBIN ]; then
 	rm -fR $VIRUSBIN &>/dev/null
 	mkdir $VIRUSBIN &>/dev/null
 else
 	mkdir $VIRUSBIN &>/dev/null
 fi
-clamscan -voi --move=$VIRUSBIN /home/rasmus/*
+clamscan -voi --move=$VIRUSBIN /home/$USR/*
 echo "DONE!"
 echo ""
 sleep 2
