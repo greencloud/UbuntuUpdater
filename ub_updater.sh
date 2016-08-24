@@ -35,7 +35,7 @@ clear
 echo $RED"    >>>>> UPDATE PACKAGES FROM STANDARD REPO <<<<<"
 # Update system
 echo $GREEN""
-apt-get update -f
+apt-get update --fix-missing
 apt-get -y upgrade
 apt-get -y dist-upgrade
 echo "DONE!"
@@ -47,19 +47,21 @@ echo $RED"    >>>>> Update ClamAV Anti-virus program <<<<<"
 echo $RED"          --- THIS MIGHT TAKE A WHILE ----"
 # Update Anti-virus
 # If there's no anti-virus found, install ClamAV
-echo $GREEN""
+echo $NORM""
 CLAMFILE=/usr/bin/clamscan
 CLAMAVLOG=/var/log/clamav/freshclam.log
 if [ ! -f $CLAMFILE ]; then
 	echo $RED"    !!!! NO ANTI-VIRUS INSTALLED - INSTALLING CLAMAV !!!!"
-	echo $STAND""
+	echo $NORM""
 	sleep 2
-	apt-get install -y clamscan clamav-daemon
+	apt-get install -y clamav clamav-daemon
 fi
-if [ -f $CLAMAVLOG ]; then
+if [[ -f $CLAMFILE && -f $CLAMAVLOG ]]; then
+	sleep 1
 	freshclam
 	tail -10 $CLAMAVLOG
 fi
+echo $GREEN""
 echo "DONE!"
 echo ""
 sleep 5
