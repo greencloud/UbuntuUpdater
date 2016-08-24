@@ -25,7 +25,7 @@ echo ""
 echo $BLUE"    This script is intended to automate system update and at the same"
 echo $BLUE"    time run a cleanup and virus quick-scan utility. Enjoy! :)"
 echo ""
-echo $RED"     IMPORTANT: Make sure you run this script as a root (with 'sudo')"
+echo $RED"     NOTICE: This script will always run with root priviledge..."
 echo ""
 echo ""
 echo ""
@@ -35,6 +35,11 @@ clear
 echo $RED"    >>>>> UPDATE PACKAGES FROM STANDARD REPO <<<<<"
 # Update system
 echo $GREEN""
+# Make sure system is not locked
+LOCK=/var/lib/apt/lists/lock
+if [ -f $LOCK ]; then
+	rm -f $LOCK
+fi
 apt-get update --fix-missing
 apt-get -y upgrade
 apt-get -y dist-upgrade
