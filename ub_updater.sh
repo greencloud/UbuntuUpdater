@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# CHANGE THIS TO YOUR USERNAME
+# CHANGE THIS TO YOUR OWN USERNAME (/home/username)
 USR=greencloud
 
 clear
@@ -15,7 +15,7 @@ echo ""
 echo ""
 echo $RED"          +###################################################+"
 echo $RED"          +                                                   +"
-echo $RED"          +     Ubuntu Mat3 System Updater Script v.0.1       +"
+echo $RED"          +     Ubuntu Linux System Updater Script v.0.1      +"
 echo $RED"          +                                                   +"
 echo $RED"          +                  By Greencloud                    +"
 echo $RED"          +                                                   +"
@@ -35,7 +35,7 @@ clear
 echo $RED"    >>>>> UPDATING SYSTEM FROM STANDARD REPO <<<<<"
 # Update system
 echo $GREEN""
-apt-get -f update
+apt-get update -f
 apt-get -y upgrade
 apt-get -y dist-upgrade
 echo "DONE!"
@@ -99,3 +99,4 @@ pause(){
 	read -n1 -rsp $"Press any key to continue or Ctrl+C to exit..."
 }
 pause
+clear
