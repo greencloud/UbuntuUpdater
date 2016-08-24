@@ -88,7 +88,7 @@ echo $RED"    >>>>> RUNNING VIRUS QUICK SCAN <<<<<"
 echo $RED" ----- This might take a few minutes -----"
 # Virus quick scan
 echo $GREEN""
-VIRUSBIN=/home/$USR/Virus-bin
+VIRUSBIN=/home/$USR/Virus-bin-$RANDOM
 if [ -d $VIRUSBIN ]; then
 	rm -fR $VIRUSBIN &>/dev/null
 	mkdir $VIRUSBIN &>/dev/null
