@@ -45,7 +45,7 @@ pause(){
 if [ -f $UPDATER ]; then
 	# Make updater hidden and executable
 	cp $UPDATER $ACTIVE &>/dev/null
-	sed -i '4s/.*/USR='$USER'/' $ACTIVE
+	sed -i '6s/.*/USR='$USER'/' $ACTIVE
 	chmod a+x $ACTIVE &>/dev/null
 fi
 
